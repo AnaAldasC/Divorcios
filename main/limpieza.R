@@ -14,7 +14,7 @@ divorcios_2018 <- datos_2018 %>%
   filter(year(Mes) == 2018) %>%
   count(Mes, prov_insc, cant_insc, parr_insc,
         name = "Observaciones") %>%
-  as_tsibble(
+  as_tibble(
     index = Mes,
     key = c(prov_insc, cant_insc, parr_insc)
   )
