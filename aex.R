@@ -31,6 +31,13 @@ autoplot(divorcios_ecuador, Observaciones) +
     y = "Número de divorcios"
   )
 
+#comentarios jeje
+#Se observa que los divorcios suben y bajan durante el año
+#con una caida más fuerte en diciembre. 
+No se ve una tendencia clara y tampoco podemos asegurar que la serie sea estacionaria.
+#En cuanto a ciclos y estacionalidad, no podemos identificarlos porque solo tenemos datos de un año.
+
+
 #-----------------------------------------------------------------------
 #Gráfico de la provincia:Pichincha - cantón: Quito - parroquia: Quitumbe
 #-----------------------------------------------------------------------
@@ -53,4 +60,9 @@ divorcios_2018 %>%
     x = "Mes",
     y = "Número de divorcios"
   )
+#comentario:
+#En este grafico tambien vemos que los divorcios aumentan y disminuyen entre meses,
+#especialmente con una caida en diciembre. 
+#No se observa una tendencia clara ni podemos confirmar estacionariedad. 
+#Tampoco podemos decir que existan ciclos o estacionalidad porahora ya que necesitariamos datos de mas años para analizar esos patrones.
 
