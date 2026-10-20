@@ -20,3 +20,11 @@ divorcios_2018 <- datos_2018 %>%
   )
 
 divorcios_2018
+
+#guardar como CSV
+write.csv(
+  divorcios_2018 %>%
+    mutate(Mes = as.Date(Mes)),
+  file = here("Data", "divorcios_2018.csv"),
+  row.names = FALSE
+)
