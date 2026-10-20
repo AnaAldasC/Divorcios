@@ -25,6 +25,6 @@ divorcios_2018
 write.csv(
   divorcios_2018 %>%
     mutate(Mes = as.Date(Mes)),
-  file = here("Data", "divorcios_2018.csv"),
+  file = here("Data", "data.csv"),
   row.names = FALSE
 )
