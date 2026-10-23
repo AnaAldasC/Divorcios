@@ -1,17 +1,22 @@
 library(fpp3)
 library(here)
 
-datos_2018 <- read.csv(
-  here("Data", "EDV 2018.csv"),
-  sep = ";"
+archivos <- list.files(
+  here("Data"),
+  pattern = "^EDV_[0-9]{4}\\.csv$",
+  full.names = TRUE,
+  ignore.case = TRUE
 )
 
-divorcios_2018 <- datos_2018 %>%
+datos_divorcios <- archivos %>%
+  lapply(read.csv, sep = ";", colClasses = "character") %>%
+  bind_rows()
+
+divorcios_ts <- datos_divorcios %>%
   mutate(
     fecha_insc = as.Date(fecha_insc, format = "%m/%d/%Y"),
     Mes = yearmonth(fecha_insc)
   ) %>%
-  dplyr::filter(year(Mes) == 2018) %>%
   count(Mes, prov_insc, cant_insc, parr_insc,
         name = "Observaciones") %>%
   as_tsibble(
@@ -19,11 +24,9 @@ divorcios_2018 <- datos_2018 %>%
     key = c(prov_insc, cant_insc, parr_insc)
   )
 
-divorcios_2018
-
-#guardar como CSV
+#guardar como .csv
 write.csv(
-  divorcios_2018 %>%
+  divorcios_ts %>%
     mutate(Mes = as.Date(Mes)),
   file = here("Data", "data.csv"),
   row.names = FALSE
